@@ -1,0 +1,11 @@
+{
+  "watch": ["src"],
+  "ext": "js,ts",
+  "env": {
+    "NODE_ENV": "local",
+    "NODE_OPTIONS": "-r ts-node/register",
+    "NODE_PATH": "src"
+  },
+  "exec": "node --inspect=127.0.0.1:18933 src/main.ts",
+  "restartable": "rs"
+}
