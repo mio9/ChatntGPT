@@ -15,7 +15,7 @@ client.once(Events.ClientReady, (client) => {
 client.on(Events.InteractionCreate, (interaction) => {
 	if (!interaction.isCommand()) return;
 	commandMap.get(interaction.commandName).execute(interaction);
-	console.log(interaction.commandName);
+	console.log(`${interaction.user.tag} ran ${interaction.commandName}`);
 });
 
 client.login(TOKEN);
