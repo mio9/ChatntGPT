@@ -33,7 +33,7 @@ commandMap.set("ask", {
 			const replyMsg = `> **${
 				interaction.user.tag
 			}** - *"${inputPrompt.value.toString()}"*
-		${_.trimStart(response.data, "\ns")}
+		${(response.data as string).replace(/^\s/gm, '')}
 		`;
 			interaction.editReply(replyMsg);
 		} catch (error) {
