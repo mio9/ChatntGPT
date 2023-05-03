@@ -28,7 +28,7 @@ client.login(TOKEN);
 const rest = new REST().setToken(TOKEN);
 
 // register commands
-(async () => {
+async function registerCommand() {
 	try {
 		console.log(
 			`Started refreshing ${commandMap.size} application (/) commands.`,
@@ -36,15 +36,18 @@ const rest = new REST().setToken(TOKEN);
 
 		// prepare commands JSON body
 		const commands = [];
-		commandMap.forEach((value, key) => {
+		commandMap.forEach((value) => {
 			commands.push(value.data.toJSON());
 		});
 
 		// The put method is used to fully refresh all commands in the guild with the current set
-		const data = await rest.put(
-			Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID),
+		const [data] = await Promise.all([ rest.put(
+			Routes.applicationGuildCommands(CLIENT_ID, '439668987421261824'),
 			{ body: commands },
-		);
+		), rest.put(
+			Routes.applicationGuildCommands(CLIENT_ID, '735805122617147503'),
+			{ body: commands },
+		)]);
 
 		console.log("Successfully reloaded application (/) commands.");
 		// console.log(data);
@@ -52,4 +55,5 @@ const rest = new REST().setToken(TOKEN);
 		// And of course, make sure you catch and log any errors!
 		console.error(error);
 	}
-})();
+}
+// registerCommand()
