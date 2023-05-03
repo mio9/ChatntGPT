@@ -14,7 +14,12 @@ client.once(Events.ClientReady, (client) => {
 
 client.on(Events.InteractionCreate, (interaction) => {
 	if (!interaction.isCommand()) return;
-	commandMap.get(interaction.commandName).execute(interaction);
+	try {
+		commandMap.get(interaction.commandName).execute(interaction);
+	} catch (error) {
+		console.error(error)
+		interaction.reply('Command failed to run, maybe try again 😅')
+	}
 	console.log(`${interaction.user.tag} ran ${interaction.commandName}`);
 });
 
