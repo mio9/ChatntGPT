@@ -1,5 +1,5 @@
 import { Client, Events, GatewayIntentBits, REST, Routes } from "discord.js";
-import { commandMap } from "commands";
+import { commandMap } from "./commands";
 import * as dotenv from "dotenv";
 const env = dotenv.config().parsed;
 const TOKEN = env.TOKEN;
